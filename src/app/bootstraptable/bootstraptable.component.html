@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let cust of customers2"
+    [class.selected]="cust === selectedCustomer2" (click)="onSelect(cust)">
+          <td>{{ cust.id }}</td>
+          <td>{{ cust.firstname }}</td>
+          <td>{{ cust.lastname }}</td>
+          <td>{{ cust.age }}</td>
+      </tr>
+  </tbody>
+</table>
