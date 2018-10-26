@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { Observable, of } from 'rxjs';
+
 import { Customer } from './customer';
 import { CUSTOMERS } from './mook-customers';
 
@@ -10,7 +12,7 @@ export class DataService {
 
   constructor() { }
 
-  getCustomers(): Promise<Customer[]> {
-    return Promise.resolve(CUSTOMERS);
+  getCustomers(): Observable<Customer[]> {
+    return of(CUSTOMERS);
   }
 }
