@@ -2,29 +2,27 @@ import { Component, OnInit } from '@angular/core';
 
 import { Customer } from './customer';
 
+import { DataService } from './data.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [DataService]
 })
 export class AppComponent implements OnInit {
 
   customers: Customer[];
   selectedCustomer: Customer;
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   getCustomer( ) {
-    return [
-      new Customer(1, 'Mary', 'Taylor', 24),
-      new Customer(2, 'Rodolfo', 'Edinson', 24),
-      new Customer(3, 'Quennis', 'Dayan', 29),
-      new Customer(4, 'Carlos', 'Daneys', 25)
-    ];
+    return this.dataService.getCustomers().then(customers => this.customers = customers);
   }
 
   ngOnInit(): void {
-    this.customers = this.getCustomer();
+    this.getCustomer();
   }
 
   onSelect(cust: Customer): void {
